@@ -10,13 +10,6 @@ node _devserver.js
 
 Open daarna `http://localhost:4173` in de browser.
 
-## Gratis online zetten (GitHub Pages)
-
-1. Maak gratis een account op [github.com](https://github.com) (als je die nog niet hebt).
-2. Maak een nieuwe, lege **public** repository, bijvoorbeeld genaamd `rekentrainer`.
-3. Upload de inhoud van deze map (`RekenTrainer/`) naar die repository — dat kan via de "Add file → Upload files" knop op github.com, slepen en neerzetten mag.
-4. Ga in de repository naar **Settings → Pages**, kies bij "Source" de map `main` / `/ (root)`, en klik Save.
-5. Na een paar minuten staat de app live op een adres als `https://<jouw-gebruikersnaam>.github.io/rekentrainer/`.
 
 ## Op de iPad zetten
 
