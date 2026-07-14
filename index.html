@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
+<title>RekenTrainer</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RekenTrainer">
+<meta name="theme-color" content="#1a0c2e">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HOME -->
+<div id="screen-home" class="screen active">
+  <h1>✨ RekenTrainer</h1>
+  <div class="mascot-wrap">
+    <div class="mascot" id="mascot-home">
+      <div class="mascot-halo"></div>
+      <div class="mascot-ring"></div>
+      <div class="mascot-orb">
+        <div class="mascot-ear left"></div>
+        <div class="mascot-ear right"></div>
+        <div class="mascot-eye left"></div>
+        <div class="mascot-eye right"></div>
+        <div class="mascot-mouth"></div>
+      </div>
+      <div class="mascot-level" id="mascot-home-level">Lv1</div>
+      <div class="mascot-spark s1"></div>
+    </div>
+    <div class="streak-pill">🔥 <span id="streak-count">0</span> dagen op rij</div>
+  </div>
+  <div id="badge-row" class="badge-row"></div>
+  <div class="home-actions">
+    <button class="big-btn" id="btn-start-session">▶️ Start oefenen</button>
+    <button class="big-btn secondary" id="btn-start-flits" style="display:none;">⚡ Flitssommen</button>
+  </div>
+  <p class="center-note" id="phase-note"></p>
+  <button class="parent-link" id="btn-parent">Voor ouders</button>
+</div>
+
+<!-- SESSION -->
+<div id="screen-session" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" id="btn-session-exit">✕</button>
+    <span id="session-phase-label" style="font-weight:700;"></span>
+    <span></span>
+  </div>
+  <div class="progress-bar-outer"><div class="progress-bar-inner" id="session-progress"></div></div>
+  <div class="question-card">
+    <div class="question-text" id="question-text">3 + 4 = __</div>
+    <div class="beads-wrap" id="beads-wrap"></div>
+    <div class="options-grid" id="options-grid"></div>
+    <div class="hint-box" id="hint-box"></div>
+  </div>
+</div>
+
+<!-- FLITS -->
+<div id="screen-flits" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" id="btn-flits-exit">✕</button>
+    <span style="font-weight:700;">⚡ Flitssommen</span>
+    <span></span>
+  </div>
+  <div class="timer-pill">⏱️ <span id="flits-time">120</span>s &nbsp;|&nbsp; ✅ <span id="flits-score">0</span></div>
+  <div class="question-card">
+    <div class="question-text" id="flits-question-text">3 + 4 = __</div>
+    <div class="options-grid" id="flits-options-grid"></div>
+  </div>
+  <p class="center-note">Record: <span id="flits-record">0</span> goed</p>
+</div>
+
+<!-- REWARD -->
+<div id="screen-reward" class="screen">
+  <h1 id="reward-title">Goed gedaan! 🎉</h1>
+  <div class="mascot-wrap">
+    <div class="mascot" id="mascot-reward">
+      <div class="mascot-halo"></div>
+      <div class="mascot-ring"></div>
+      <div class="mascot-orb">
+        <div class="mascot-ear left"></div>
+        <div class="mascot-ear right"></div>
+        <div class="mascot-eye left"></div>
+        <div class="mascot-eye right"></div>
+        <div class="mascot-mouth"></div>
+        <div class="mascot-mic"></div>
+      </div>
+      <div class="mascot-level" id="mascot-reward-level">Lv1</div>
+      <div class="mascot-spark s1"></div>
+      <div class="mascot-spark s2"></div>
+    </div>
+  </div>
+  <p id="reward-text" style="font-size:20px; text-align:center; max-width:420px;"></p>
+  <div id="reward-badges" class="badge-row"></div>
+  <button class="big-btn" id="btn-reward-home">Terug naar start</button>
+</div>
+
+<!-- PARENT GATE -->
+<div id="screen-parent-gate" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" id="btn-gate-exit">✕</button>
+    <span style="font-weight:700;">Voor ouders</span>
+    <span></span>
+  </div>
+  <h2 id="gate-question">Wat is 17 × 3?</h2>
+  <input class="gate-input" id="gate-input" inputmode="numeric" pattern="[0-9]*">
+  <button class="big-btn" id="btn-gate-check">Bevestigen</button>
+  <p class="center-note" id="gate-error"></p>
+</div>
+
+<!-- PARENT DASHBOARD -->
+<div id="screen-parent-dashboard" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" id="btn-dash-exit">✕</button>
+    <span style="font-weight:700;">Ouderdashboard</span>
+    <span></span>
+  </div>
+
+  <div class="dash-section">
+    <h3>Voortgang leerlijn</h3>
+    <div id="phase-list"></div>
+    <label style="display:block; margin-top:14px; font-size:15px;">Fase handmatig aanpassen:
+      <select id="phase-select"></select>
+    </label>
+  </div>
+
+  <div class="dash-section">
+    <h3>Vaakst fout (top 10)</h3>
+    <ul class="wrong-list" id="wrong-list"></ul>
+  </div>
+
+  <div class="dash-section">
+    <h3>Snelheid per sessie (gemiddelde reactietijd)</h3>
+    <svg class="chart-svg" id="speed-chart" viewBox="0 0 300 140" preserveAspectRatio="none"></svg>
+  </div>
+
+  <div class="dash-section">
+    <h3>Instellingen</h3>
+    <label><input type="checkbox" id="sound-toggle" checked> Geluid aan</label><br><br>
+    <button class="small-btn" id="btn-reset-all">Alle voortgang wissen</button>
+  </div>
+</div>
+
+<div id="confetti-layer" class="confetti-layer"></div>
+
+<script src="questions.js"></script>
+<script src="storage.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
