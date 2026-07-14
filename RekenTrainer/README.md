@@ -13,7 +13,7 @@ Open daarna `http://localhost:4173` in de browser.
 
 ## Op de iPad zetten
 
-1. Open de link uit stap 5 hierboven in **Safari** op de iPad.
+1. Open de link op de iPad.
 2. Tik op de deelknop (vierkantje met pijl omhoog) onderin.
 3. Kies **"Zet op beginscherm"**.
 4. Klaar — het icoontje staat nu op het beginscherm en opent de app fullscreen, zonder Safari-balken.
